@@ -11,6 +11,18 @@ declare module 'styled-components' {
       gray2: string;
       gray3: string;
       gray4: string;
+      green1: string;
+      green2: string;
+      background: string;
+    };
+
+    media: {
+      tablet: string;
+      desktop: string;
+      widescreen: string;
+      tabletOnly: string;
+      desktopOnly: string;
+      widescreenOnly: string;
     };
   }
 }
