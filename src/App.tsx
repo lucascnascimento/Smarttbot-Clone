@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/global';
 
 import smarttBotDefault from './styles/themes/smarttBotDefault';
+import Card from './components/Card';
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <ThemeProvider theme={smarttBotDefault}>
         <GlobalStyle />
         <Normalize />
-        <h1>Hello World</h1>
+        <Card>
+          <p>Análise Geral / Principal</p>
+        </Card>
       </ThemeProvider>
     </>
   );
