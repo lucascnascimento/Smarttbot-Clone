@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-// todo: Change jsonplaceholder url to smarttbot url
-const api = axios.create({ baseURL: 'https://jsonplaceholder.typicode.com/' });
+const api = axios.create({
+  baseURL: 'https://api-front-test.k8s.smarttbot.com/api/v1',
+});
 
 export default api;
