@@ -13,7 +13,7 @@ const initialState: RobotListState = {
   error: {} as DefaultResponse,
 };
 
-export default function RobotOverviewReducer(
+export default function RobotListReducer(
   state = initialState,
   action: RobotListActionTypes
 ): RobotListState {
