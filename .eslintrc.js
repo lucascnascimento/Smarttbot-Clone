@@ -47,6 +47,7 @@ module.exports = {
         peerDependencies: true,
       },
     ],
+    'no-param-reassign': ['error', { props: false }],
   },
   settings: {
     react: {
