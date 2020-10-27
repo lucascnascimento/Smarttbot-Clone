@@ -2,8 +2,16 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier', 'prettier/react'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb',
+    'prettier',
+    'prettier/react',
+    'plugin:prettier/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -30,11 +38,23 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'no-unused-vars': 1,
+    'import/no-extraneous-dependencies': [
+      1,
+      {
+        devDependencies: true,
+        optionalDependencies: true,
+        peerDependencies: true,
+      },
+    ],
   },
   settings: {
+    react: {
+      version: 'detect',
+    },
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
       },
     },
   },
