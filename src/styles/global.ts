@@ -10,6 +10,10 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html, body {
+    height: 100%;
+  }
+
   body, button, input{
     font: 16px Roboto, sans-serif;
     background: ${(props) => props.theme.colors.background}
@@ -19,6 +23,7 @@ export default createGlobalStyle`
     max-width: 1407px;
     margin: 0 auto;
     padding: 0 0 50px;
+    height: 100%;
   }
   button{
     cursor: pointer;
