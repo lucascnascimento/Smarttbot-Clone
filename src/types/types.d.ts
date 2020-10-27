@@ -19,8 +19,8 @@ export interface RobotPaper {
   position: number;
   type: number;
   paper_value: number;
-  profit: string;
-  id: string;
+  profit: number;
+  id: number;
   created_at: string;
 }
 
@@ -29,9 +29,10 @@ export interface Movimentations {
   value: number;
 }
 
-export interface RobotList extends Robot {
+export interface RobotInstance extends Robot {
   last_paper: RobotPaper;
   movimentations: Array<Movimentations>;
+  simulation: number;
 }
 
 export interface CreateRobot {
