@@ -42,7 +42,7 @@ export const fetchRobotOverview = (): ThunkAction<
   Action<string>
 > => {
   return (dispatch) => {
-    dispatch(fetchRobotOverviewRequest);
+    dispatch(fetchRobotOverviewRequest());
     api
       .get('/robot/overview')
       .then((response) => {
@@ -51,7 +51,7 @@ export const fetchRobotOverview = (): ThunkAction<
       })
       .catch((error) => {
         console.log(error);
-        fetchRobotOverviewFailure(error);
+        dispatch(fetchRobotOverviewFailure(error));
       });
   };
 };
