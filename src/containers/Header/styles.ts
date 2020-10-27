@@ -4,6 +4,8 @@ import { BaseContainer } from '../../styles/styles';
 export const Container = styled(BaseContainer)`
   flex-direction: row;
   padding: 16px 0px;
+  justify-content: space-between;
+  padding-right: 28px;
 `;
 
 export const TitleContainer = styled.div`
