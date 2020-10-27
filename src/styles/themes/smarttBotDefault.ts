@@ -22,4 +22,10 @@ export default {
     widescreenOnly:
       'only screen and (min-width: 1216px) and (max-width: 1407px)',
   },
+
+  width: {
+    tablet: '769px',
+    desktop: '1024px',
+    widescreen: '1216px',
+  },
 };

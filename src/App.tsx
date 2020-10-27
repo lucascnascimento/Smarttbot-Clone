@@ -7,7 +7,7 @@ import store from './store';
 import GlobalStyle from './styles/global';
 import smarttBotDefault from './styles/themes/smarttBotDefault';
 
-import Card from './components/Card';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -16,9 +16,7 @@ function App() {
         <ThemeProvider theme={smarttBotDefault}>
           <GlobalStyle />
           <Normalize />
-          <Card>
-            <p>Análise Geral / Principal</p>
-          </Card>
+          <Dashboard />
         </ThemeProvider>
       </Provider>
     </>

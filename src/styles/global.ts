@@ -16,9 +16,9 @@ export default createGlobalStyle`
   }
 
   #root{
-    max-width: 1200px;
+    max-width: 1216px;
     margin: 0 auto;
-    padding: 0 20px 50px;
+    padding: 0 0 50px;
   }
   button{
     cursor: pointer;
