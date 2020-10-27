@@ -45,7 +45,7 @@ export interface CreateRobot {
 
 export interface Papers {
   name: string;
-  transactions: number;
+  trasactions: number;
 }
 
 export interface RobotOverview {
