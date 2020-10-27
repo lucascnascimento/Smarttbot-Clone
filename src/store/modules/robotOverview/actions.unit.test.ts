@@ -7,33 +7,10 @@ import { DefaultResponse, RobotOverview } from '../../../types/types';
 import { RobotOverviewState } from './types';
 import * as actions from './actions';
 import * as types from './types';
+import { defaultResponse, initialState, overviewData } from './mockData';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-
-const initialState: RobotOverviewState = {
-  loadingRobotOverview: true,
-  robotOverview: {} as RobotOverview,
-  error: {} as DefaultResponse,
-};
-
-// Robot overview success response data
-const overviewData: RobotOverview = {
-  moviment_summary: 0,
-  open_positions: 1000,
-  papers: [
-    { name: 'WING20', trasactions: 331 },
-    { name: 'ABEV', trasactions: 455 },
-    { name: 'ABEV', trasactions: 214 },
-  ],
-  transactions: 1000,
-};
-
-// Robot overview failure response data
-const defaultResponse: DefaultResponse = {
-  message: 'FAILURE',
-  data: {},
-};
 
 describe('actions', () => {
   it('should create a robot overview request action', () => {
