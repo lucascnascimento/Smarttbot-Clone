@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 24px;
 `;
 
 const rotate = keyframes`

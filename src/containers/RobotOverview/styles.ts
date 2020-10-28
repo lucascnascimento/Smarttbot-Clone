@@ -78,22 +78,14 @@ export const Papers = styled.div`
     margin: 18px 28px 18px;
     color: ${(props) => props.theme.colors.gray2};
   }
-
-  & > div {
-    margin-bottom: 18px;
-
-    @media ${(props) => props.theme.media.tablet} {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
 `;
 
 export const PapersList = styled.ul`
-  margin: 0 28px;
+  margin: 18px 28px;
 
   @media ${(props) => props.theme.media.tablet} {
-    display: inline-block;
-    width: 50%;
+    display: grid;
+    column-gap: 72px;
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
