@@ -14,9 +14,9 @@ export default {
   },
 
   media: {
-    tablet: 'only screen and min-width 769px',
-    desktop: 'only screen and min-width 1024px',
-    widescreen: 'only screen and min-width 1216px',
+    tablet: 'only screen and (min-width: 769px)',
+    desktop: 'only screen and (min-width: 1024px)',
+    widescreen: 'only screen and (min-width: 1216px)',
     tabletOnly: 'only screen and (min-width: 769px) and (max-width: 1023px)',
     desktopOnly: 'only screen and (min-width: 1024px) and (max-width: 1215px)',
     widescreenOnly:
