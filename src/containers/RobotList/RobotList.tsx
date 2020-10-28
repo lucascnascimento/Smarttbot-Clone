@@ -26,9 +26,7 @@ const RobotList: React.FC = () => {
   return (
     <>
       <Container>
-        {robots.map((robot) => (
-          <Robot data={robot} />
-        ))}
+        {!loadingRobots && robots.map((robot) => <Robot data={robot} />)}
       </Container>
       {loadingRobots && <Spinner size={32} color={theme.colors.green2} />}
     </>

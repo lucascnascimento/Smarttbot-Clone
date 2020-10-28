@@ -23,6 +23,7 @@ export const Container = styled(BaseContainer)`
   @media ${(props) => props.theme.media.desktop} {
     flex-direction: row;
     justify-content: space-between;
+    margin: 0px;
   }
 `;
 

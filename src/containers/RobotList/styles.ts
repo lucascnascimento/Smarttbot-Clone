@@ -6,7 +6,9 @@ export const Container = styled.div`
 
   @media ${(props) => props.theme.media.desktop} {
     display: grid;
-    grid-gap: 2px;
     grid-template-columns: repeat(2, 1fr);
+    margin: 12px;
+    row-gap: 12px;
+    column-gap: 12px;
   }
 `;
