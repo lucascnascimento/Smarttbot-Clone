@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Robot from '../../assets/images/robotLogo.png';
 
 interface ToggleStateProps {
   toggleState: boolean;
@@ -25,8 +26,8 @@ export const Toggle = styled.div`
 `;
 
 export const ToggleTrack = styled.div<ToggleStateProps>`
-  width: 64px;
-  height: 29px;
+  width: 56px;
+  height: 24px;
   background: ${(props) =>
     props.toggleState
       ? `linear-gradient(
@@ -44,14 +45,14 @@ export const ToggleTrack = styled.div<ToggleStateProps>`
 `;
 
 export const ToggleThumb = styled.div<ToggleStateProps>`
-  width: 24px;
-  height: 24px;
-  border-radius: 14px;
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
   background-color: white;
   position: absolute;
-  top: 2px;
-  left: ${(props) => (props.toggleState ? '37px' : '3px')};
-  z-index: 2;
+  top: 3px;
+  left: ${(props) => (props.toggleState ? '34px' : '3px')};
+  z-index: 4;
   transition: left 0.2s;
 `;
 
