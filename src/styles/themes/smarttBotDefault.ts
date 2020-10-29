@@ -24,8 +24,8 @@ export default {
   },
 
   width: {
-    tablet: '769px',
-    desktop: '1024px',
-    widescreen: '1216px',
+    tablet: 769,
+    desktop: 1024,
+    widescreen: 1216,
   },
 };

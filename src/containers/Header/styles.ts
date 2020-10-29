@@ -6,6 +6,7 @@ export const Container = styled(BaseContainer)`
   padding: 16px 0px;
   justify-content: space-between;
   padding-right: 28px;
+  align-items: center;
 `;
 
 export const TitleContainer = styled.div`
@@ -13,17 +14,48 @@ export const TitleContainer = styled.div`
   align-items: center;
 `;
 
-export const Icon = styled.div`
+export const TitleIcon = styled.div`
+  display: none;
+
+  @media ${(props) => props.theme.media.desktop} {
+    display: block;
+    padding: 0 28px;
+    & svg {
+      color: ${(props) => props.theme.colors.green2};
+    }
+  }
+`;
+
+export const HamburguerMenu = styled.button`
+  cursor: pointer;
+  background: transparent;
+  border: none;
   padding: 0 28px;
+
   & svg {
     color: ${(props) => props.theme.colors.green2};
+  }
+
+  &:hover {
+    & svg {
+      color: blue;
+    }
+  }
+
+  @media ${(props) => props.theme.media.desktop} {
+    display: none;
   }
 `;
 
 export const Separator = styled.div`
-  height: 36px;
-  width: 1px;
-  background-color: ${(props) => props.theme.colors.gray1};
+  display: none;
+
+  @media ${(props) => props.theme.media.desktop} {
+    height: 36px;
+    width: 1px;
+    background-color: ${(props) => props.theme.colors.gray1};
+    display: block;
+  }
 `;
 
 export const Title = styled.h1`
