@@ -2,17 +2,23 @@ import styled from 'styled-components';
 import { BaseContainer } from '../../styles/styles';
 
 export const Container = styled(BaseContainer)`
-  flex-direction: column;
-  height: 100%;
-  width: 64px;
-  overflow: hidden;
-  z-index: 50;
-  position: fixed;
-  transition: width 4s;
+  display: none;
 
-  &:hover {
-    width: auto;
-    overflow: auto;
+  @media ${(props) => props.theme.media.desktop} {
+    display: block;
+    flex-direction: column;
+    height: 100%;
+    width: 64px;
+    overflow: hidden;
+    z-index: 50;
+    position: fixed;
+    transition: width 4s;
+    margin-bottom: 12px;
+
+    &:hover {
+      width: auto;
+      overflow: auto;
+    }
   }
 `;
 

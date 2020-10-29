@@ -3,11 +3,11 @@ import { AiFillSignal } from 'react-icons/ai';
 import robotLogo from '../../assets/images/robotLogo.png';
 import textLogo from '../../assets/images/textLogo.png';
 
-import NavbarItem from '../../components/NavbarItem';
+import SidebarItem from '../../components/SidebarItem';
 
 import { Container, Logo, Separator, List } from './styles';
 
-const Navbar: React.FC = () => {
+const Sidebar: React.FC = () => {
   return (
     <Container>
       <Logo>
@@ -20,19 +20,19 @@ const Navbar: React.FC = () => {
       </Logo>
       <Separator />
       <List>
-        <NavbarItem
+        <SidebarItem
           title="Análise Geral"
           icon={<AiFillSignal size={22} />}
-          handleClick={() => console.log('NavbarItem click')}
+          handleClick={() => console.log('SidebarItem click')}
         />
-        <NavbarItem
+        <SidebarItem
           title="Análise Geral"
           icon={<AiFillSignal size={22} />}
-          handleClick={() => console.log('NavbarItem click')}
+          handleClick={() => console.log('SidebarItem click')}
         />
       </List>
     </Container>
   );
 };
 
-export default Navbar;
+export default Sidebar;
