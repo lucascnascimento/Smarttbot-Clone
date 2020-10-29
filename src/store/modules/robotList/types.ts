@@ -1,11 +1,11 @@
-import { DefaultResponse, RobotInstance } from '../../../types/types';
+import { RobotInstance, ServerErrorResponse } from '../../../types/types';
 
 // State type definition
 
 export interface RobotListState {
   loadingRobotList: boolean;
   robots: Array<RobotInstance>;
-  error: DefaultResponse;
+  error: ServerErrorResponse;
 }
 
 // Actions type definition
@@ -25,7 +25,7 @@ interface FetchRobotListSuccess {
 
 interface FetchRobotListFailure {
   type: typeof FETCH_ROBOT_LIST_FAILURE;
-  payload: DefaultResponse;
+  payload: ServerErrorResponse;
 }
 
 export type RobotListActionTypes =

@@ -1,4 +1,4 @@
-import { DefaultResponse, RobotInstance } from '../../../types/types';
+import { ServerErrorResponse, RobotInstance } from '../../../types/types';
 import {
   FETCH_ROBOT_LIST_REQUEST,
   FETCH_ROBOT_LIST_SUCCESS,
@@ -22,10 +22,10 @@ export function fetchRobotListSuccess(
 }
 
 export function fetchRobotListFailure(
-  defaultMessage: DefaultResponse
+  error: ServerErrorResponse
 ): RobotListActionTypes {
   return {
     type: FETCH_ROBOT_LIST_FAILURE,
-    payload: defaultMessage,
+    payload: error,
   };
 }

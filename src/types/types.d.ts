@@ -66,6 +66,16 @@ export interface Strategy {
   name: string;
 }
 
+export interface ServerErrorResponse {
+  message: string;
+  status: number;
+}
+
+export interface ServerResponse<T> {
+  message: string;
+  data: T;
+}
+
 export interface DefaultResponse {
   message: string;
   data: any;

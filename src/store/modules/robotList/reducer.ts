@@ -1,4 +1,5 @@
-import { DefaultResponse, RobotInstance } from '../../../types/types';
+import { produce } from 'immer';
+import { RobotInstance, ServerErrorResponse } from '../../../types/types';
 import {
   FETCH_ROBOT_LIST_REQUEST,
   FETCH_ROBOT_LIST_SUCCESS,
@@ -10,7 +11,7 @@ import {
 const initialState: RobotListState = {
   loadingRobotList: true,
   robots: [] as Array<RobotInstance>,
-  error: {} as DefaultResponse,
+  error: {} as ServerErrorResponse,
 };
 
 export default function RobotListReducer(
@@ -19,20 +20,26 @@ export default function RobotListReducer(
 ): RobotListState {
   switch (action.type) {
     case FETCH_ROBOT_LIST_REQUEST: {
-      return { ...initialState, loadingRobotList: true };
+      const nextState = produce(state, (draftState) => {
+        return { ...draftState, loadingRobotList: true };
+      });
+      return nextState;
     }
 
     case FETCH_ROBOT_LIST_SUCCESS: {
-      return {
-        loadingRobotList: false,
-        robots: action.payload,
-        error: {} as DefaultResponse,
-      };
+      const nextState = produce(state, (draftState) => {
+        return {
+          loadingRobotList: false,
+          error: {} as ServerErrorResponse,
+          robots: draftState.robots.concat(action.payload),
+        };
+      });
+      return nextState;
     }
 
     case FETCH_ROBOT_LIST_FAILURE: {
       return {
-        loadingRobotList: false,
+        loadingRobotList: true,
         robots: [] as Array<RobotInstance>,
         error: action.payload,
       };
