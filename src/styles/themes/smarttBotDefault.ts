@@ -14,6 +14,7 @@ export default {
   },
 
   media: {
+    small: 'only screen and (min-width: 576px)',
     tablet: 'only screen and (min-width: 769px)',
     desktop: 'only screen and (min-width: 1024px)',
     widescreen: 'only screen and (min-width: 1216px)',
@@ -24,6 +25,7 @@ export default {
   },
 
   width: {
+    small: 576,
     tablet: 769,
     desktop: 1024,
     widescreen: 1216,
