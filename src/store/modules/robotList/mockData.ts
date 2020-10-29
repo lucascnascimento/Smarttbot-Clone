@@ -1,19 +1,10 @@
-import {
-  DefaultResponse,
-  RobotInstance,
-  ServerErrorResponse,
-} from '../../../types/types';
+import { RobotInstance, ServerErrorResponse } from '../../../types/types';
 import { RobotListState } from './types';
 
 export const initialState: RobotListState = {
   loadingRobotList: true,
   robots: [] as Array<RobotInstance>,
   error: {} as ServerErrorResponse,
-};
-
-export const defaultResponse: DefaultResponse = {
-  message: 'FAILURE',
-  data: {},
 };
 
 export const errorResponse: ServerErrorResponse = {
