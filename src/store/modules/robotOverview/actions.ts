@@ -1,4 +1,4 @@
-import { DefaultResponse, RobotOverview } from '../../../types/types';
+import { RobotOverview, ServerErrorResponse } from '../../../types/types';
 import {
   FETCH_ROBOT_OVERVIEW_FAILURE,
   FETCH_ROBOT_OVERVIEW_REQUEST,
@@ -22,7 +22,7 @@ export function fetchRobotOverviewSuccess(
 }
 
 export function fetchRobotOverviewFailure(
-  defaultMessage: DefaultResponse
+  defaultMessage: ServerErrorResponse
 ): RobotOverviewActionTypes {
   return {
     type: FETCH_ROBOT_OVERVIEW_FAILURE,

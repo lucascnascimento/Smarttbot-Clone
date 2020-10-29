@@ -8,6 +8,11 @@ import {
   fetchRobotOverviewRequest,
   fetchRobotOverviewSuccess,
 } from './actions';
+import {
+  RobotOverview,
+  ServerErrorResponse,
+  ServerResponse,
+} from '../../../types/types';
 
 // Thunk
 export const fetchRobotOverview = (): ThunkAction<
@@ -16,17 +21,21 @@ export const fetchRobotOverview = (): ThunkAction<
   unknown,
   Action<string>
 > => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(fetchRobotOverviewRequest());
-    api
-      .get('/robot/overview')
-      .then((response) => {
-        console.log(response.data);
-        dispatch(fetchRobotOverviewSuccess(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-        dispatch(fetchRobotOverviewFailure(error));
-      });
+    try {
+      const res = await api.get<ServerResponse<RobotOverview>>(
+        '/robot/overview'
+      );
+
+      dispatch(fetchRobotOverviewSuccess(res.data.data));
+    } catch (error) {
+      const errorMsg: ServerErrorResponse = {
+        message: error.response.statusText,
+        status: error.response.status,
+      };
+
+      dispatch(fetchRobotOverviewFailure(errorMsg));
+    }
   };
 };

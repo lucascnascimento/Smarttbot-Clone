@@ -1,4 +1,4 @@
-import { DefaultResponse, RobotOverview } from '../../../types/types';
+import { RobotOverview, ServerErrorResponse } from '../../../types/types';
 import {
   FETCH_ROBOT_OVERVIEW_REQUEST,
   FETCH_ROBOT_OVERVIEW_SUCCESS,
@@ -10,7 +10,7 @@ import {
 const initialState: RobotOverviewState = {
   loadingRobotOverview: true,
   robotOverview: {} as RobotOverview,
-  error: {} as DefaultResponse,
+  error: {} as ServerErrorResponse,
 };
 
 export default function RobotOverviewReducer(
@@ -26,13 +26,13 @@ export default function RobotOverviewReducer(
       return {
         loadingRobotOverview: false,
         robotOverview: action.payload,
-        error: {} as DefaultResponse,
+        error: {} as ServerErrorResponse,
       };
     }
 
     case FETCH_ROBOT_OVERVIEW_FAILURE: {
       return {
-        loadingRobotOverview: false,
+        loadingRobotOverview: true,
         robotOverview: {} as RobotOverview,
         error: action.payload,
       };

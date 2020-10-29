@@ -1,11 +1,11 @@
-import { DefaultResponse, RobotOverview } from '../../../types/types';
+import { RobotOverview, ServerErrorResponse } from '../../../types/types';
 
 // State type definition
 
 export interface RobotOverviewState {
   loadingRobotOverview: boolean;
   robotOverview: RobotOverview;
-  error: DefaultResponse;
+  error: ServerErrorResponse;
 }
 
 // Actions type definition
@@ -25,7 +25,7 @@ interface FetchRobotOverviewSuccess {
 
 interface FetchRobotOverviewFailure {
   type: typeof FETCH_ROBOT_OVERVIEW_FAILURE;
-  payload: DefaultResponse;
+  payload: ServerErrorResponse;
 }
 
 export type RobotOverviewActionTypes =

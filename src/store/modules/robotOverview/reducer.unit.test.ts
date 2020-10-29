@@ -1,7 +1,7 @@
 import reducer from './reducer';
 import * as actions from './actions';
 import * as types from './types';
-import { initialState, overviewData, defaultResponse } from './mockData';
+import { initialState, overviewData, errorResponse } from './mockData';
 
 describe('robot overview reducer', () => {
   it('should return the initial state', () => {
@@ -27,13 +27,13 @@ describe('robot overview reducer', () => {
     });
   });
 
-  it('should handle fetch robot ovewrview failure', () => {
+  it('should handle fetch robot overview failure', () => {
     expect(
-      reducer(undefined, actions.fetchRobotOverviewFailure(defaultResponse))
+      reducer(undefined, actions.fetchRobotOverviewFailure(errorResponse))
     ).toEqual({
       ...initialState,
-      loadingRobotOverview: false,
-      error: defaultResponse,
+      loadingRobotOverview: true,
+      error: errorResponse,
     });
   });
 });

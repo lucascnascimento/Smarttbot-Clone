@@ -75,8 +75,3 @@ export interface ServerResponse<T> {
   message: string;
   data: T;
 }
-
-export interface DefaultResponse {
-  message: string;
-  data: any;
-}

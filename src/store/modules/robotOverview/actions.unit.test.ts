@@ -1,6 +1,6 @@
 import * as actions from './actions';
 import * as types from './types';
-import { defaultResponse, overviewData } from './mockData';
+import { errorResponse, overviewData } from './mockData';
 
 describe('actions', () => {
   it('should create a robot overview request action', () => {
@@ -23,9 +23,9 @@ describe('actions', () => {
   it('should create a robot overview failure action', () => {
     const expectedAction = {
       type: types.FETCH_ROBOT_OVERVIEW_FAILURE,
-      payload: defaultResponse,
+      payload: errorResponse,
     };
-    expect(actions.fetchRobotOverviewFailure(defaultResponse)).toEqual(
+    expect(actions.fetchRobotOverviewFailure(errorResponse)).toEqual(
       expectedAction
     );
   });

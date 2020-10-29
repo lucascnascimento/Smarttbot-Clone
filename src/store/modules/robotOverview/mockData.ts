@@ -1,10 +1,10 @@
-import { DefaultResponse, RobotOverview } from '../../../types/types';
+import { RobotOverview, ServerErrorResponse } from '../../../types/types';
 import { RobotOverviewState } from './types';
 
 export const initialState: RobotOverviewState = {
   loadingRobotOverview: true,
   robotOverview: {} as RobotOverview,
-  error: {} as DefaultResponse,
+  error: {} as ServerErrorResponse,
 };
 
 // Robot overview success response data
@@ -20,7 +20,7 @@ export const overviewData: RobotOverview = {
 };
 
 // Robot overview failure response data
-export const defaultResponse: DefaultResponse = {
+export const errorResponse: ServerErrorResponse = {
   message: 'FAILURE',
-  data: {},
+  status: 404,
 };
