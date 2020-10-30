@@ -1,3 +1,5 @@
+import { ButtonBase } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { BaseContainer } from '../../styles/styles';
 
@@ -14,11 +16,12 @@ export const Container = styled(BaseContainer)`
   }
 `;
 
-export const NewRobotContainer = styled.div`
+export const NewRobotButton = styled(ButtonBase)`
   display: flex;
   flex-direction: row;
+  border-radius: 8px !important;
 
-  & button {
+  & div:last-of-type {
     border: 0;
     background: transparent;
     margin: 0 18px;
@@ -53,7 +56,7 @@ export const Icon = styled.div`
   min-height: 68px;
   display: flex;
   align-items: center;
-  border: 1px solid ${(props) => props.theme.colors.gray1};
+  border: 1px solid ${(props) => props.theme.colors.gray1} !important;
   border-radius: 8px;
 
   & svg {
@@ -63,9 +66,18 @@ export const Icon = styled.div`
   }
 `;
 
-export const PlanContainer = styled.div`
-  margin-top: 18px;
+export const Separator = styled.div`
+  height: 1px;
+  width: 100%;
+  background-color: ${(props) => props.theme.colors.gray1};
+  margin: 18px 0;
 
+  @media ${(props) => props.theme.media.tablet} {
+    display: none;
+  }
+`;
+
+export const PlanContainer = styled.div`
   @media ${(props) => props.theme.media.tablet} {
     margin-top: 10px;
   }
@@ -79,11 +91,12 @@ export const PlanContainer = styled.div`
     & span {
       display: inline-block;
     }
-
-    span:last-of-type {
-      color: ${(props) => props.theme.colors.green2};
-    }
   }
+`;
+
+export const UpgradePlan = styled(Link)`
+  color: ${(props) => props.theme.colors.green2};
+  text-decoration: none;
 `;
 
 export const Dot = styled.div`

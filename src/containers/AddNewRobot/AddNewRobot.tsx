@@ -3,34 +3,34 @@ import { GoPlus } from 'react-icons/go';
 
 import {
   Container,
-  NewRobotContainer,
+  NewRobotButton,
   Icon,
+  Separator,
   PlanContainer,
   Dot,
+  UpgradePlan,
 } from './styles';
 
 const AddNewRobot: React.FC = () => {
   return (
     <Container>
-      <NewRobotContainer>
+      <NewRobotButton onClick={() => console.log('Open New Robot Modal ')}>
         <Icon>
           <GoPlus size={24} />
         </Icon>
-        <button
-          type="button"
-          onClick={() => console.log('Open New Robot Modal ')}
-        >
+        <div>
           <h2>Adicionar Novo Robô</h2>
           <span>
             Você possui <span>02 Robôs</span> disponíveis
           </span>
-        </button>
-      </NewRobotContainer>
+        </div>
+      </NewRobotButton>
+      <Separator />
       <PlanContainer>
         <p>
           <span>Plano Pro </span>
           <Dot />
-          <span> Fazer Updgrade de Plano</span>
+          <UpgradePlan to="/planos"> Fazer Updgrade de Plano</UpgradePlan>
         </p>
       </PlanContainer>
     </Container>
@@ -38,6 +38,3 @@ const AddNewRobot: React.FC = () => {
 };
 
 export default AddNewRobot;
-
-// todo: updgrade de plano ir para nova página
-// todo: Efeito de hover no botão
