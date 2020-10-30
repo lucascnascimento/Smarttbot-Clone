@@ -37,12 +37,21 @@ export const fetchRobotList = (
 
       dispatch(fetchRobotListSuccess(res.data.data));
     } catch (error) {
-      const errorMsg: ServerErrorResponse = {
-        message: error.response.statusText,
-        status: error.response.status,
-      };
+      try {
+        const errorMsg: ServerErrorResponse = {
+          message: error.response.statusText,
+          status: error.response.status,
+        };
 
-      dispatch(fetchRobotListFailure(errorMsg));
+        dispatch(fetchRobotListFailure(errorMsg));
+      } catch (err) {
+        const errorMsg: ServerErrorResponse = {
+          message: 'Bad request',
+          status: 400,
+        };
+
+        dispatch(fetchRobotListFailure(errorMsg));
+      }
     }
   };
 };

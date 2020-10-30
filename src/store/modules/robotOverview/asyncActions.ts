@@ -30,12 +30,21 @@ export const fetchRobotOverview = (): ThunkAction<
 
       dispatch(fetchRobotOverviewSuccess(res.data.data));
     } catch (error) {
-      const errorMsg: ServerErrorResponse = {
-        message: error.response.statusText,
-        status: error.response.status,
-      };
+      try {
+        const errorMsg: ServerErrorResponse = {
+          message: error.response.statusText,
+          status: error.response.status,
+        };
 
-      dispatch(fetchRobotOverviewFailure(errorMsg));
+        dispatch(fetchRobotOverviewFailure(errorMsg));
+      } catch (err) {
+        const errorMsg: ServerErrorResponse = {
+          message: 'Bad request',
+          status: 400,
+        };
+
+        dispatch(fetchRobotOverviewFailure(errorMsg));
+      }
     }
   };
 };
