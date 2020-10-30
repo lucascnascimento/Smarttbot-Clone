@@ -36,16 +36,18 @@ const Sidebar: React.FC = () => {
           </div>
         </Logo>
         <Separator />
-        <Menu>
+        <Menu onClick={() => console.log('clicou nos meus filhos')}>
           <SidebarItem
             title="Análise Geral"
             icon={<AiFillSignal size={22} />}
-            handleClick={() => console.log('SidebarItem click')}
+            handleClick={() => console.log('SidebarItem 1 click')}
+            active
           />
           <SidebarItem
             title="Análise Geral"
             icon={<AiFillSignal size={22} />}
-            handleClick={() => console.log('SidebarItem click')}
+            handleClick={() => console.log('SidebarItem 2 click')}
+            active={false}
           />
         </Menu>
       </Container>

@@ -33,7 +33,6 @@ export const Container = styled(BaseContainer)<SidebarContainerProps>`
     display: block;
     flex-direction: column;
     width: 64px;
-    overflow: hidden;
     z-index: 100;
     position: fixed;
     border-radius: 10px;
@@ -74,6 +73,4 @@ export const Separator = styled.div`
   }
 `;
 
-export const Menu = styled.ul`
-  margin: 6px 0px;
-`;
+export const Menu = styled.ul``;
