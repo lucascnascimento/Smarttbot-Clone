@@ -17,12 +17,21 @@ declare module 'styled-components' {
     };
 
     media: {
+      small: string;
       tablet: string;
       desktop: string;
       widescreen: string;
       tabletOnly: string;
       desktopOnly: string;
       widescreenOnly: string;
+      mobileAndTabletOnly: string;
+    };
+
+    width: {
+      small: number;
+      tablet: number;
+      desktop: number;
+      widescreen: number;
     };
   }
 }

@@ -9,7 +9,7 @@ import theme from '../../styles/themes/smarttBotDefault';
 
 import SidebarItem from '../../components/SidebarItem';
 
-import { SidebarContainer, Container, Logo, Separator, Menu } from './styles';
+import { Container, Logo, Separator, Menu } from './styles';
 import { useTypedSelector } from '../../store/modules/rootReducer';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 
@@ -24,7 +24,6 @@ const Sidebar: React.FC = () => {
         handleClick={() => dispatch(closeSidebar())}
         visibility={sidebarState && windowWidth < theme.width.desktop}
       />
-
       <Container
         visibility={sidebarState || windowWidth >= theme.width.desktop}
       >

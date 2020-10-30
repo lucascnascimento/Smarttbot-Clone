@@ -22,6 +22,7 @@ export default {
     desktopOnly: 'only screen and (min-width: 1024px) and (max-width: 1215px)',
     widescreenOnly:
       'only screen and (min-width: 1216px) and (max-width: 1407px)',
+    mobileAndTabletOnly: 'only screen and (max-width: 1024px)',
   },
 
   width: {

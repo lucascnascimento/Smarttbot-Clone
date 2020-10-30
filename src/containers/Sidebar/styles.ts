@@ -1,23 +1,49 @@
 import styled from 'styled-components';
 import { BaseContainer } from '../../styles/styles';
 
-export const Container = styled(BaseContainer)`
-  display: none;
+interface SidebarContainerProps {
+  visibility: boolean;
+}
+
+export const Container = styled(BaseContainer)<SidebarContainerProps>`
+  flex-direction: column;
+  margin: 0px;
+  z-index: 200;
+  border-radius: 0px;
+  overflow: hidden;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 100vh;
+  z-index: 1000;
+  transform: translate3d(
+    ${(props) => (props.visibility ? '0vw' : '-100vw')},
+    0,
+    0
+  );
+  transition: transform 0.8s cubic-bezier(0, 0.52, 0, 1);
+
+  @media ${(props) => props.theme.media.small} {
+    width: 30%;
+  }
 
   @media ${(props) => props.theme.media.desktop} {
     display: block;
     flex-direction: column;
-    height: 100%;
     width: 64px;
     overflow: hidden;
-    z-index: 50;
+    z-index: 100;
     position: fixed;
-    transition: width 4s;
-    margin-bottom: 12px;
+    border-radius: 10px;
+    height: calc(100% - 24px);
+    margin: 12px;
 
     &:hover {
-      width: auto;
+      width: 15%;
       overflow: auto;
+      transition: width 0.5s;
     }
   }
 `;
@@ -42,9 +68,12 @@ export const Logo = styled.div`
 export const Separator = styled.div`
   background-color: ${(props) => props.theme.colors.gray1};
   height: 1px;
-  margin: 0 8px;
+
+  @media ${(props) => props.theme.media.desktop} {
+    margin: 0 8px;
+  }
 `;
 
-export const List = styled.ul`
+export const Menu = styled.ul`
   margin: 6px 0px;
 `;

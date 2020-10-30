@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react/require-default-props */
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode } from 'react';
 import { AiFillSignal } from 'react-icons/ai';
 import { MdMenu } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
@@ -15,7 +15,7 @@ import {
   TitleIcon,
   Separator,
 } from './styles';
-import { toggleMode } from '../../store/modules/ui/actions';
+import { toggleMode, openSidebar } from '../../store/modules/ui/actions';
 import theme from '../../styles/themes/smarttBotDefault';
 
 interface HeaderProps {
@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle }: HeaderProps) => {
   return (
     <header>
       <Container>
-        <HamburguerMenu onClick={() => console.log('hamburguer menu')}>
+        <HamburguerMenu onClick={() => dispatch(openSidebar())}>
           <MdMenu size={32} />
         </HamburguerMenu>
         <TitleContainer>
