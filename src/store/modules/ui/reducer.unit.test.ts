@@ -9,4 +9,18 @@ describe('ui reducer', () => {
       mode: true,
     });
   });
+
+  it('should set the action of openning the sidebar to true', () => {
+    expect(reducer(undefined, actions.openSidebar())).toEqual({
+      ...initialState,
+      sidebar: true,
+    });
+  });
+
+  it('should set the action of openning the sidebar to false', () => {
+    expect(reducer(undefined, actions.closeSidebar())).toEqual({
+      ...initialState,
+      sidebar: false,
+    });
+  });
 });
