@@ -20,7 +20,7 @@ import theme from '../../styles/themes/smarttBotDefault';
 
 interface HeaderProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   icon?: ReactNode;
   rightSideComponent?: ReactNode;
 }
