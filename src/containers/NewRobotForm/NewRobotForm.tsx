@@ -1,5 +1,6 @@
 import {
   FormControlLabel,
+  InputLabel,
   MenuItem,
   Radio,
   RadioGroup,
@@ -19,7 +20,15 @@ import {
 import { modes } from '../../constants/constants';
 import theme from '../../styles/themes/smarttBotDefault';
 
-import { Container, Title, Form, StyledTextField, Submit } from './styles';
+import {
+  Container,
+  Title,
+  Form,
+  StyledTextField,
+  StyledSelect,
+  StyledRadioGroup,
+  Submit,
+} from './styles';
 import { useFetch } from '../../hooks/useFetch';
 import { BASE_URL } from '../../services/api';
 import { usePost } from '../../hooks/usePost';
@@ -117,9 +126,11 @@ const NewRobotForm: React.FC = () => {
             error={!!(formik.touched.title && formik.errors.title)}
             helperText={formik.errors.title}
           />
-          <Select
+          <InputLabel id="select-strategy-label">Estratégia</InputLabel>
+          <StyledSelect
             id="strategy_id"
             name="strategy_id"
+            labelId="select-strategy-label"
             value={formik.values.strategy_id}
             fullWidth
             onChange={formik.handleChange}
@@ -131,8 +142,8 @@ const NewRobotForm: React.FC = () => {
                 {strategy.name}
               </MenuItem>
             ))}
-          </Select>
-          <TextField
+          </StyledSelect>
+          <StyledTextField
             id="initial_capital"
             name="initial_capital"
             label="Capital inicial"
@@ -147,7 +158,7 @@ const NewRobotForm: React.FC = () => {
             }
             helperText={formik.errors.initial_capital}
           />
-          <RadioGroup
+          <StyledRadioGroup
             id="mode"
             name="mode"
             value={formik.values.mode}
@@ -160,8 +171,8 @@ const NewRobotForm: React.FC = () => {
               label="Simulado"
             />
             <FormControlLabel value="real" control={<Radio />} label="Real" />
-          </RadioGroup>
-          <Select
+          </StyledRadioGroup>
+          <StyledSelect
             id="modeInfo"
             name="modeInfo"
             value={formik.values.modeInfo}
@@ -182,7 +193,7 @@ const NewRobotForm: React.FC = () => {
                     {broker.name}
                   </MenuItem>
                 ))}
-          </Select>
+          </StyledSelect>
           <Submit type="submit">Criar</Submit>
         </Form>
       </>
