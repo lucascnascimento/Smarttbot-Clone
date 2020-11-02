@@ -18,10 +18,10 @@ interface ToggleButtonProps {
 
 /**
  * Renders a toggle button
- * @param leftText Text to be displayed on the left side of the button
- * @param rightText Text to be displayed on the right side of the button
- * @param state The toggle button state
- * @param action Action to be performed when button state changes
+ * @param leftText Text to be displayed on the left side of the button.
+ * @param rightText Text to be displayed on the right side of the button.
+ * @param state The toggle button state.
+ * @param action Action to be performed when button state changes.
  */
 const ToggleButton: React.FC<ToggleButtonProps> = ({
   leftText,
@@ -32,10 +32,10 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   return (
     <Container>
       <LeftText toggleState={state}>{leftText}</LeftText>
-      <Toggle onClick={() => action()}>
+      <Toggle onClick={() => action()} aria-label="Trocar modo">
         <ToggleTrack toggleState={state} />
         <ToggleThumb toggleState={state} />
-        <input type="checkbox" checked={state} />
+        <input type="checkbox" checked={state} readOnly />
       </Toggle>
       <RightText toggleState={state}>{rightText}</RightText>
     </Container>
