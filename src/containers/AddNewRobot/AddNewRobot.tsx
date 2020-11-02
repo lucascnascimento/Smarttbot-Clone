@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GoPlus } from 'react-icons/go';
+import Modal from '../../components/Modal';
+import NewRobotForm from '../NewRobotForm';
 
 import {
   Container,
@@ -12,28 +14,37 @@ import {
 } from './styles';
 
 const AddNewRobot: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <Container>
-      <NewRobotButton onClick={() => console.log('Open New Robot Modal ')}>
-        <Icon>
-          <GoPlus size={24} />
-        </Icon>
-        <div>
-          <h2>Adicionar Novo Robô</h2>
-          <span>
-            Você possui <span>02 Robôs</span> disponíveis
-          </span>
-        </div>
-      </NewRobotButton>
-      <Separator />
-      <PlanContainer>
-        <p>
-          <span>Plano Pro </span>
-          <Dot />
-          <UpgradePlan to="/planos"> Fazer Updgrade de Plano</UpgradePlan>
-        </p>
-      </PlanContainer>
-    </Container>
+    <>
+      <Container>
+        <NewRobotButton onClick={() => setShowModal(true)}>
+          <Icon>
+            <GoPlus size={24} />
+          </Icon>
+          <div>
+            <h2>Adicionar Novo Robô</h2>
+            <span>
+              Você possui <span>02 Robôs</span> disponíveis
+            </span>
+          </div>
+        </NewRobotButton>
+        <Separator />
+        <PlanContainer>
+          <p>
+            <span>Plano Pro </span>
+            <Dot />
+            <UpgradePlan to="/planos"> Fazer Updgrade de Plano</UpgradePlan>
+          </p>
+        </PlanContainer>
+      </Container>
+      {showModal && (
+        <Modal show={showModal} handleClose={() => setShowModal(false)}>
+          <NewRobotForm />
+        </Modal>
+      )}
+    </>
   );
 };
 
