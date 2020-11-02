@@ -3,6 +3,7 @@ export interface Robot {
   title: string;
   running: number;
   updated_at: string;
+  created_at: string;
   mode: number;
   stock_codes: string;
   strategy: string;
@@ -10,7 +11,6 @@ export interface Robot {
   number_trades: number;
   daily_balance: number;
   type: string;
-  created_at: string;
 }
 
 export interface RobotPaper {
@@ -74,4 +74,19 @@ export interface ServerErrorResponse {
 export interface ServerResponse<T> {
   message: string;
   data: T;
+}
+
+export const enum Mode {
+  simulated,
+  real,
+}
+
+export const enum SimulationType {
+  Pessimista,
+  Otimista,
+}
+
+export interface ModeInfo {
+  id: number;
+  name: string;
 }
