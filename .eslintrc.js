@@ -48,6 +48,8 @@ module.exports = {
       },
     ],
     'no-param-reassign': ['error', { props: false }],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
   },
   settings: {
     react: {
