@@ -1,5 +1,6 @@
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
+import { format } from 'date-fns';
 import { RootState } from '../rootReducer';
 import api from '../../../services/api';
 import {
@@ -16,10 +17,49 @@ import {
   ServerResponse,
 } from '../../../types/types';
 
+// Format the movimentation date from robotInstances
+function modifyRobotMovimentations(robots: RobotInstance[]): RobotInstance[] {
+  return robots.reduce((robotAcc, robot) => {
+    if (robot.movimentations.length > 0) {
+      const updatedMov = robot.movimentations.map((mov) => ({
+        ...mov,
+        dateHour: `${format(new Date(mov.date), 'HH')}h`,
+      }));
+
+      return [...robotAcc, { ...robot, movimentations: updatedMov }];
+    }
+    return [...robotAcc, robot];
+  }, [] as Array<RobotInstance>);
+}
+
+// Set the error response from the async call
+function setErrorMessage(error: any) {
+  const errorMsg = {} as ServerErrorResponse;
+
+  if (error.response) {
+    errorMsg.message = error.message;
+    errorMsg.status = error.response.status;
+
+    return errorMsg;
+  }
+
+  if (error.request) {
+    errorMsg.message = error.message;
+    errorMsg.status = error.request.status;
+
+    return errorMsg;
+  }
+
+  errorMsg.message = 'Unknown Error';
+  errorMsg.status = 600;
+
+  return errorMsg;
+}
+
 // Thunk
 
 /**
- * Fetchs a robot list from remote server
+ * Fetches a robot list from remote server
  * @param mode Request Mode 0 - Simulated, 1 - Real
  * @param page Page number
  */
@@ -38,22 +78,9 @@ export const fetchRobotList = (
         },
       });
 
-      dispatch(fetchRobotListSuccess(res.data.data));
+      dispatch(fetchRobotListSuccess(modifyRobotMovimentations(res.data.data)));
     } catch (error) {
-      const errorMsg = {} as ServerErrorResponse;
-
-      if (error.response) {
-        errorMsg.message = error.message;
-        errorMsg.status = error.response.status;
-      } else if (error.request) {
-        errorMsg.message = error.message;
-        errorMsg.status = error.request.status;
-      } else {
-        errorMsg.message = 'Unknown Error';
-        errorMsg.status = 600;
-      }
-
-      dispatch(fetchRobotListFailure(errorMsg));
+      dispatch(fetchRobotListFailure(setErrorMessage(error)));
     }
   };
 };
@@ -76,22 +103,11 @@ export const refreshRobotList = (
         },
       });
 
-      dispatch(refreshRobotListSuccess(res.data.data));
+      dispatch(
+        refreshRobotListSuccess(modifyRobotMovimentations(res.data.data))
+      );
     } catch (error) {
-      const errorMsg = {} as ServerErrorResponse;
-
-      if (error.response) {
-        errorMsg.message = error.message;
-        errorMsg.status = error.response.status;
-      } else if (error.request) {
-        errorMsg.message = error.message;
-        errorMsg.status = error.request.status;
-      } else {
-        errorMsg.message = 'Unknown Error';
-        errorMsg.status = 600;
-      }
-
-      dispatch(refreshRobotListFailure(errorMsg));
+      dispatch(refreshRobotListFailure(setErrorMessage(error)));
     }
   };
 };

@@ -27,6 +27,7 @@ export interface RobotPaper {
 export interface Movimentations {
   date: string;
   value: number;
+  dateHour?: string;
 }
 
 export interface RobotInstance extends Robot {
