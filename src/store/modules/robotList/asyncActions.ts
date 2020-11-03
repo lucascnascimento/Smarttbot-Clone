@@ -6,6 +6,9 @@ import {
   fetchRobotListFailure,
   fetchRobotListSuccess,
   fetchRobotListRequest,
+  refreshRobotListFailure,
+  refreshRobotListSuccess,
+  refreshRobotListRequest,
 } from './actions';
 import {
   RobotInstance,
@@ -37,21 +40,58 @@ export const fetchRobotList = (
 
       dispatch(fetchRobotListSuccess(res.data.data));
     } catch (error) {
-      try {
-        const errorMsg: ServerErrorResponse = {
-          message: error.response.statusText,
-          status: error.response.status,
-        };
+      const errorMsg = {} as ServerErrorResponse;
 
-        dispatch(fetchRobotListFailure(errorMsg));
-      } catch (err) {
-        const errorMsg: ServerErrorResponse = {
-          message: 'Bad request',
-          status: 400,
-        };
-
-        dispatch(fetchRobotListFailure(errorMsg));
+      if (error.response) {
+        errorMsg.message = 'Internal server error';
+        errorMsg.status = error.response.status;
+      } else if (error.request) {
+        errorMsg.message = 'Bad request';
+        errorMsg.status = error.response.status;
+      } else {
+        errorMsg.message = 'Unknown Error';
+        errorMsg.status = 600;
       }
+
+      dispatch(fetchRobotListFailure(errorMsg));
+    }
+  };
+};
+
+/**
+ * Refreshes the robot list
+ * @param mode Request Mode 0 - Simulated, 1 - Real
+ */
+export const refreshRobotList = (
+  mode: boolean
+): ThunkAction<void, RootState, unknown, Action<string>> => {
+  return async (dispatch) => {
+    dispatch(refreshRobotListRequest());
+    try {
+      const res = await api.get<ServerResponse<RobotInstance[]>>('/robot', {
+        headers: {
+          limit: 4,
+          mode,
+          page: 1,
+        },
+      });
+
+      dispatch(refreshRobotListSuccess(res.data.data));
+    } catch (error) {
+      const errorMsg = {} as ServerErrorResponse;
+
+      if (error.response) {
+        errorMsg.message = 'Internal server error';
+        errorMsg.status = error.response.status;
+      } else if (error.request) {
+        errorMsg.message = 'Bad request';
+        errorMsg.status = error.response.status;
+      } else {
+        errorMsg.message = 'Unknown Error';
+        errorMsg.status = 600;
+      }
+
+      dispatch(refreshRobotListFailure(errorMsg));
     }
   };
 };

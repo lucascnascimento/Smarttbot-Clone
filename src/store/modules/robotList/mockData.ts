@@ -208,3 +208,68 @@ export const robotList: Array<RobotInstance> = [
     },
   },
 ];
+
+export const refreshedRobotList: Array<RobotInstance> = [
+  {
+    id: 1648753,
+    title: 'Eu Metus LLC',
+    running: 0,
+    updated_at: '2020-08-04 18:04:51',
+    mode: 0,
+    simulation: 1,
+    stock_codes: 'RAIL3',
+    strategy: 'Hórus',
+    initial_capital: 67692.5,
+    number_trades: 506,
+    daily_balance: 4.45,
+    type: 'Normal',
+    created_at: '2020-07-27 00:10:27',
+    movimentations: [
+      {
+        date: '2020-10-25 04:47:03',
+        value: 118,
+      },
+    ],
+    last_paper: {
+      robot_id: 1648753,
+      paper: 'WINBG20',
+      position: 17,
+      type: 1,
+      paper_value: 84208.15,
+      profit: 5.75,
+      created_at: '2020-08-28 13:40:52',
+      id: 113001,
+    },
+  },
+  {
+    id: 1648753,
+    title: 'Eu Metus LLC',
+    running: 0,
+    updated_at: '2020-08-04 18:04:51',
+    mode: 0,
+    simulation: 1,
+    stock_codes: 'RAIL3',
+    strategy: 'Hórus',
+    initial_capital: 67692.5,
+    number_trades: 506,
+    daily_balance: 4.45,
+    type: 'Normal',
+    created_at: '2020-07-27 00:10:27',
+    movimentations: [
+      {
+        date: '2020-10-25 04:47:03',
+        value: 118,
+      },
+    ],
+    last_paper: {
+      robot_id: 1648753,
+      paper: 'WINBG20',
+      position: 17,
+      type: 1,
+      paper_value: 84208.15,
+      profit: 5.75,
+      created_at: '2020-08-28 13:40:52',
+      id: 113001,
+    },
+  },
+];

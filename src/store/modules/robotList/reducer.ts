@@ -4,6 +4,9 @@ import {
   FETCH_ROBOT_LIST_REQUEST,
   FETCH_ROBOT_LIST_SUCCESS,
   FETCH_ROBOT_LIST_FAILURE,
+  REFRESH_ROBOT_LIST_REQUEST,
+  REFRESH_ROBOT_LIST_SUCCESS,
+  REFRESH_ROBOT_LIST_FAILURE,
   RobotListActionTypes,
   RobotListState,
 } from './types';
@@ -38,6 +41,29 @@ export default function RobotListReducer(
     }
 
     case FETCH_ROBOT_LIST_FAILURE: {
+      return {
+        loadingRobotList: true,
+        robots: [] as Array<RobotInstance>,
+        error: action.payload,
+      };
+    }
+
+    case REFRESH_ROBOT_LIST_REQUEST: {
+      const nextState = produce(state, (draftState) => {
+        return { ...draftState, loadingRobotList: true };
+      });
+      return nextState;
+    }
+
+    case REFRESH_ROBOT_LIST_SUCCESS: {
+      return {
+        loadingRobotList: false,
+        error: {} as ServerErrorResponse,
+        robots: action.payload,
+      };
+    }
+
+    case REFRESH_ROBOT_LIST_FAILURE: {
       return {
         loadingRobotList: true,
         robots: [] as Array<RobotInstance>,

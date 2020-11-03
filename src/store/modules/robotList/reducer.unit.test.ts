@@ -1,7 +1,12 @@
 import reducer from './reducer';
 import * as actions from './actions';
 import * as types from './types';
-import { initialState, robotList, errorResponse } from './mockData';
+import {
+  initialState,
+  robotList,
+  errorResponse,
+  refreshedRobotList,
+} from './mockData';
 
 describe('robot instances reducer', () => {
   it('should return the initial state', () => {
@@ -42,6 +47,35 @@ describe('robot instances reducer', () => {
   it('should handle fetch robot list failure', () => {
     expect(
       reducer(undefined, actions.fetchRobotListFailure(errorResponse))
+    ).toEqual({
+      ...initialState,
+      loadingRobotList: true,
+      error: errorResponse,
+    });
+  });
+
+  it('should handle refresh robot list request', () => {
+    expect(reducer(undefined, actions.refreshRobotListRequest())).toEqual({
+      ...initialState,
+      loadingRobotList: true,
+    });
+  });
+
+  it('should handle refresh robot list success', () => {
+    const state = { ...initialState, robots: robotList };
+
+    expect(
+      reducer(state, actions.refreshRobotListSuccess(refreshedRobotList))
+    ).toEqual({
+      ...initialState,
+      robots: refreshedRobotList,
+      loadingRobotList: false,
+    });
+  });
+
+  it('should handle refresh robot list failure', () => {
+    expect(
+      reducer(undefined, actions.refreshRobotListFailure(errorResponse))
     ).toEqual({
       ...initialState,
       loadingRobotList: true,
