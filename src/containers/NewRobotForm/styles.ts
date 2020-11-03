@@ -1,9 +1,16 @@
-import { Button, RadioGroup, Select, TextField } from '@material-ui/core';
+import {
+  Button,
+  ButtonBase,
+  Radio,
+  RadioGroup,
+  Select,
+  TextField,
+} from '@material-ui/core';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 0 18px 18px 18px;
-  min-width: 300px;
+  min-width: 500px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -18,6 +25,14 @@ export const Title = styled.h2`
 export const StyledTextField = styled(TextField)`
   &.MuiTextField-root {
     margin: 9px 0;
+  }
+
+  & .MuiInputLabel-filled {
+    color: ${(props) => props.theme.colors.green2};
+  }
+
+  & .MuiInput-underline::after {
+    border-color: ${(props) => props.theme.colors.green2};
   }
 `;
 
@@ -41,14 +56,17 @@ export const ButtonLeft = styled(Button)``;
 
 export const ButtonRight = styled(Button)``;
 
-export const Submit = styled(Button)`
-  background-color: red;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 4px 10px;
-  font-size: 13px;
+export const StyledRadio = styled(Radio)`
+  & .MuiIconButton-label {
+    color: ${(props) => props.theme.colors.green2};
+  }
+`;
 
-  &:hover {
-    background-color: green;
+export const Submit = styled(Button)`
+  && {
+    background: ${(props) => props.theme.colors.green2};
+    color: white;
+    padding: 4px 10px;
+    margin: 18px 0px;
   }
 `;

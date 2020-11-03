@@ -1,5 +1,7 @@
 import {
+  FormControl,
   FormControlLabel,
+  FormHelperText,
   InputLabel,
   MenuItem,
   Radio,
@@ -28,6 +30,7 @@ import {
   StyledSelect,
   StyledRadioGroup,
   Submit,
+  StyledRadio,
 } from './styles';
 import { useFetch } from '../../hooks/useFetch';
 import { BASE_URL } from '../../services/api';
@@ -126,23 +129,28 @@ const NewRobotForm: React.FC = () => {
             error={!!(formik.touched.title && formik.errors.title)}
             helperText={formik.errors.title}
           />
-          <InputLabel id="select-strategy-label">Estratégia</InputLabel>
-          <StyledSelect
-            id="strategy_id"
-            name="strategy_id"
-            labelId="select-strategy-label"
-            value={formik.values.strategy_id}
-            fullWidth
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={!!(formik.touched.strategy_id && formik.errors.strategy_id)}
-          >
-            {strategyResponse.data.data.map((strategy) => (
-              <MenuItem value={strategy.id} key={strategy.id}>
-                {strategy.name}
-              </MenuItem>
-            ))}
-          </StyledSelect>
+          <FormControl fullWidth>
+            <InputLabel id="select-strategy-label">Estratégia</InputLabel>
+            <StyledSelect
+              id="strategy_id"
+              name="strategy_id"
+              labelId="select-strategy-label"
+              value={formik.values.strategy_id}
+              fullWidth
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={
+                !!(formik.touched.strategy_id && formik.errors.strategy_id)
+              }
+            >
+              {strategyResponse.data.data.map((strategy) => (
+                <MenuItem value={strategy.id} key={strategy.id}>
+                  {strategy.name}
+                </MenuItem>
+              ))}
+            </StyledSelect>
+            <FormHelperText>*Obrigatório</FormHelperText>
+          </FormControl>
           <StyledTextField
             id="initial_capital"
             name="initial_capital"
@@ -167,33 +175,42 @@ const NewRobotForm: React.FC = () => {
           >
             <FormControlLabel
               value="simulated"
-              control={<Radio />}
+              control={<StyledRadio />}
               label="Simulado"
             />
-            <FormControlLabel value="real" control={<Radio />} label="Real" />
+            <FormControlLabel
+              value="real"
+              control={<StyledRadio />}
+              label="Real"
+            />
           </StyledRadioGroup>
-          <StyledSelect
-            id="modeInfo"
-            name="modeInfo"
-            value={formik.values.modeInfo}
-            fullWidth
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={!!(formik.touched.modeInfo && formik.errors.modeInfo)}
-          >
-            {formik.values.mode === 'simulated'
-              ? modes.map((mode) => (
-                  <MenuItem value={mode.id} key={mode.id}>
-                    {' '}
-                    {mode.name}
-                  </MenuItem>
-                ))
-              : brokerResponse.data.data.map((broker) => (
-                  <MenuItem value={broker.id} key={broker.id}>
-                    {broker.name}
-                  </MenuItem>
-                ))}
-          </StyledSelect>
+          <FormControl fullWidth>
+            <InputLabel id="select-mode-label">Estratégia</InputLabel>
+            <StyledSelect
+              id="modeInfo"
+              name="modeInfo"
+              labelId="select-mode-label"
+              value={formik.values.modeInfo}
+              fullWidth
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={!!(formik.touched.modeInfo && formik.errors.modeInfo)}
+            >
+              {formik.values.mode === 'simulated'
+                ? modes.map((mode) => (
+                    <MenuItem value={mode.id} key={mode.id}>
+                      {' '}
+                      {mode.name}
+                    </MenuItem>
+                  ))
+                : brokerResponse.data.data.map((broker) => (
+                    <MenuItem value={broker.id} key={broker.id}>
+                      {broker.name}
+                    </MenuItem>
+                  ))}
+            </StyledSelect>
+            <FormHelperText>*Obrigatório</FormHelperText>
+          </FormControl>
           <Submit type="submit">Criar</Submit>
         </Form>
       </>
