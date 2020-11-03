@@ -1,6 +1,10 @@
 import React from 'react';
 import { AiFillSignal } from 'react-icons/ai';
+import { MdShoppingCart } from 'react-icons/md';
+import { FaUserAlt } from 'react-icons/fa';
+import { GoGear } from 'react-icons/go';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import robotLogo from '../../assets/images/robotLogo.png';
 import textLogo from '../../assets/images/textLogo.png';
 import Backdrop from '../../components/Backdrop';
@@ -17,6 +21,7 @@ const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
   const sidebarState = useTypedSelector((state) => state.UI.sidebar);
   const windowWidth = useWindowWidth();
+  const history = useHistory();
 
   return (
     <>
@@ -36,17 +41,29 @@ const Sidebar: React.FC = () => {
           </div>
         </Logo>
         <Separator />
-        <Menu onClick={() => console.log('clicou nos meus filhos')}>
+        <Menu>
           <SidebarItem
             title="Análise Geral"
             icon={<AiFillSignal size={22} />}
-            handleClick={() => console.log('SidebarItem 1 click')}
+            handleClick={() => history.push('/')}
             active
           />
           <SidebarItem
-            title="Análise Geral"
-            icon={<AiFillSignal size={22} />}
-            handleClick={() => console.log('SidebarItem 2 click')}
+            title="Planos"
+            icon={<MdShoppingCart size={22} />}
+            handleClick={() => history.push('/plans')}
+            active={false}
+          />
+          <SidebarItem
+            title="Perfil"
+            icon={<FaUserAlt size={22} />}
+            handleClick={() => history.push('/profile')}
+            active={false}
+          />
+          <SidebarItem
+            title="Configurações"
+            icon={<GoGear size={22} />}
+            handleClick={() => history.push('/configurations')}
             active={false}
           />
         </Menu>

@@ -11,6 +11,11 @@ export const Container = styled(BaseContainer)<SidebarContainerProps>`
   z-index: 200;
   border-radius: 0px;
   overflow: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   position: fixed;
   left: 0;
