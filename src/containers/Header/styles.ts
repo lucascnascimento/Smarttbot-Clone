@@ -1,3 +1,4 @@
+import { ButtonBase } from '@material-ui/core';
 import styled from 'styled-components';
 import { BaseContainer } from '../../styles/styles';
 
@@ -26,24 +27,18 @@ export const TitleIcon = styled.div`
   }
 `;
 
-export const HamburguerMenu = styled.button`
+export const HamburguerMenu = styled(ButtonBase)`
   cursor: pointer;
   background: transparent;
   border: none;
-  padding: 0 28px;
+  margin: 0 28px !important;
 
   & svg {
     color: ${(props) => props.theme.colors.green2};
   }
 
-  &:hover {
-    & svg {
-      color: blue;
-    }
-  }
-
   @media ${(props) => props.theme.media.desktop} {
-    display: none;
+    display: none !important;
   }
 `;
 
