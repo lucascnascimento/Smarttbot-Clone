@@ -43,11 +43,11 @@ export const fetchRobotList = (
       const errorMsg = {} as ServerErrorResponse;
 
       if (error.response) {
-        errorMsg.message = 'Internal server error';
+        errorMsg.message = error.message;
         errorMsg.status = error.response.status;
       } else if (error.request) {
-        errorMsg.message = 'Bad request';
-        errorMsg.status = error.response.status;
+        errorMsg.message = error.message;
+        errorMsg.status = error.request.status;
       } else {
         errorMsg.message = 'Unknown Error';
         errorMsg.status = 600;
@@ -81,11 +81,11 @@ export const refreshRobotList = (
       const errorMsg = {} as ServerErrorResponse;
 
       if (error.response) {
-        errorMsg.message = 'Internal server error';
+        errorMsg.message = error.message;
         errorMsg.status = error.response.status;
       } else if (error.request) {
-        errorMsg.message = 'Bad request';
-        errorMsg.status = error.response.status;
+        errorMsg.message = error.message;
+        errorMsg.status = error.request.status;
       } else {
         errorMsg.message = 'Unknown Error';
         errorMsg.status = 600;
