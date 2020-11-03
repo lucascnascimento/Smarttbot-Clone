@@ -1,3 +1,4 @@
+import { ButtonBase } from '@material-ui/core';
 import styled from 'styled-components';
 import { BaseContainer } from '../../styles/styles';
 
@@ -189,11 +190,6 @@ export const ChartHeader = styled.div`
 
   @media ${(props) => props.theme.media.desktop} {
     margin-top: 0px;
-  }
-
-  & button {
-    border: 0;
-    background: transparent;
   }
 
   div:first-of-type {

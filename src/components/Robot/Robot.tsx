@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   MdArrowDropUp,
   MdArrowDropDown,
   MdKeyboardArrowDown,
   MdPause,
   MdMoreVert,
+  MdPlayArrow,
 } from 'react-icons/md';
 import { format } from 'date-fns';
-import { RobotInstance } from '../../types/types';
+import { ButtonBase, CircularProgress } from '@material-ui/core';
+import { Robot, RobotInstance, ServerResponse } from '../../types/types';
 import { formatMoney } from '../../utils/utils';
+import { usePut } from '../../hooks/usePut';
+
 import Chart from './Chart';
 
 import {
@@ -22,17 +26,27 @@ import {
   RobotChart,
   ChartHeader,
   ChartContainer,
-  LastPaperError,
 } from './styles';
 
 interface RobotProps {
   data: RobotInstance;
 }
 
-const Robot: React.FC<RobotProps> = ({ data }: RobotProps) => {
+const RobotDashboard: React.FC<RobotProps> = ({ data }: RobotProps) => {
+  const [running, setRunning] = useState(data.running);
+  const [putRunning, loadingRunning, responseRunning, putErrorRunning] = usePut<
+    ServerResponse<Robot>
+  >();
+
+  function handleRunning() {
+    putRunning(`/robot/${data.id}/${running ? 'stop' : 'start'}`);
+  }
+
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    if (responseRunning.status === 200) {
+      setRunning(running ? 0 : 1);
+    }
+  }, [putErrorRunning, responseRunning]);
 
   return (
     <Container>
@@ -81,7 +95,9 @@ const Robot: React.FC<RobotProps> = ({ data }: RobotProps) => {
           <div>
             <button
               type="button"
-              onClick={() => alert('To Do: Filtrar Saldo por dia, semana, mês')}
+              onClick={() =>
+                console.log('To Do: Filtrar Saldo por dia, semana, mês')
+              }
             >
               <span>Saldo diário</span>
               <MdKeyboardArrowDown size={20} />
@@ -105,30 +121,33 @@ const Robot: React.FC<RobotProps> = ({ data }: RobotProps) => {
             </span>
           </div>
           <div>
-            <button
-              type="button"
-              onClick={() => alert('To Do: Post Request para pausar')}
-            >
-              <MdPause size={24} />
-            </button>
-            <button
+            <ButtonBase type="button" onClick={() => handleRunning()}>
+              {loadingRunning ? (
+                <CircularProgress size={16} />
+              ) : running ? (
+                <MdPause size={24} />
+              ) : (
+                <MdPlayArrow size={24} />
+              )}
+            </ButtonBase>
+            <ButtonBase
               type="button"
               onClick={() =>
-                alert(
+                console.log(
                   'To Do: Abrir opções do Gráfico (Filtrar por dia, semana, mês)'
                 )
               }
             >
               <MdMoreVert size={24} />
-            </button>
+            </ButtonBase>
           </div>
         </ChartHeader>
         <ChartContainer>
-          <Chart />
+          <Chart data={data.movimentations} />
         </ChartContainer>
       </RobotChart>
     </Container>
   );
 };
 
-export default Robot;
+export default RobotDashboard;
