@@ -4,7 +4,6 @@ import { MdShoppingCart } from 'react-icons/md';
 import { FaUserAlt } from 'react-icons/fa';
 import { GoGear } from 'react-icons/go';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import robotLogo from '../../assets/images/robotLogo.png';
 import textLogo from '../../assets/images/textLogo.png';
 import Backdrop from '../../components/Backdrop';
@@ -21,7 +20,6 @@ const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
   const sidebarState = useTypedSelector((state) => state.UI.sidebar);
   const windowWidth = useWindowWidth();
-  const history = useHistory();
 
   return (
     <>
@@ -45,26 +43,22 @@ const Sidebar: React.FC = () => {
           <SidebarItem
             title="Análise Geral"
             icon={<AiFillSignal size={22} />}
-            handleClick={() => history.push('/')}
-            active
+            to="/"
           />
           <SidebarItem
             title="Planos"
             icon={<MdShoppingCart size={22} />}
-            handleClick={() => history.push('/plans')}
-            active={false}
+            to="/plans"
           />
           <SidebarItem
             title="Perfil"
             icon={<FaUserAlt size={22} />}
-            handleClick={() => history.push('/profile')}
-            active={false}
+            to="/profile"
           />
           <SidebarItem
             title="Configurações"
             icon={<GoGear size={22} />}
-            handleClick={() => history.push('/configurations')}
-            active={false}
+            to="/configurations"
           />
         </Menu>
       </Container>
