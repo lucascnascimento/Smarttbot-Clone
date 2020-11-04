@@ -31,7 +31,6 @@ Como o projeto ficou extenso, irei dividir as explicações em sessões, nas qua
 - [Outros](#outros)
   - [Hooks](#hooks)
   - [Store](#store)
-- [Conclusão](#conclusão)
 
 ## Sobre o projeto
 
