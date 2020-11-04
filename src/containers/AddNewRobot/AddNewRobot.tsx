@@ -13,6 +13,9 @@ import {
   UpgradePlan,
 } from './styles';
 
+/**
+ * Container to show actions to add a robot and change plan.
+ */
 const AddNewRobot: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -35,7 +38,7 @@ const AddNewRobot: React.FC = () => {
           <p>
             <span>Plano Pro </span>
             <Dot />
-            <UpgradePlan to="/planos"> Fazer Updgrade de Plano</UpgradePlan>
+            <UpgradePlan to="/plans"> Fazer Updgrade de Plano</UpgradePlan>
           </p>
         </PlanContainer>
       </Container>

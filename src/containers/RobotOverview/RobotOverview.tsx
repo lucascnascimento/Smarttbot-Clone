@@ -19,8 +19,9 @@ import {
   PapersList,
 } from './styles';
 
-// todo checar se o robotoverview está vindo completo
-
+/**
+ * Display the robot overview
+ * */
 const RobotOverview: React.FC = () => {
   const dispatch = useDispatch();
   const robotOverview = useTypedSelector(
@@ -45,12 +46,10 @@ const RobotOverview: React.FC = () => {
             <MovementSummary profit={!(robotOverview.moviment_summary < 0)}>
               <h5>Resumo de movimentação</h5>
               <Value>{formatMoney(robotOverview.moviment_summary)}</Value>
-              {/* <Value>{formatMoney(500)}</Value> */}
             </MovementSummary>
             <TotalTransactions>
               <h5>Total de transações realizadas</h5>
               <Value>{robotOverview.transactions}</Value>
-              {/* <Value>{1000}</Value> */}
             </TotalTransactions>
           </Summary>
           <Separator />

@@ -32,16 +32,22 @@ interface RobotProps {
   data: RobotInstance;
 }
 
-const RobotDashboard: React.FC<RobotProps> = ({ data }: RobotProps) => {
+/**
+ * Renders the robot instance info.
+ * @param data Data to be displayed on the chart
+ */
+const RobotInstanceInfo: React.FC<RobotProps> = ({ data }: RobotProps) => {
   const [running, setRunning] = useState(data.running);
   const [putRunning, loadingRunning, responseRunning, putErrorRunning] = usePut<
     ServerResponse<Robot>
   >();
 
+  // Put request to start or stop the robot
   function handleRunning() {
     putRunning(`/robot/${data.id}/${running ? 'stop' : 'start'}`);
   }
 
+  // running is being used as a state variable to display a play or pause button.
   useEffect(() => {
     if (responseRunning.status === 200) {
       setRunning(running ? 0 : 1);
@@ -122,13 +128,7 @@ const RobotDashboard: React.FC<RobotProps> = ({ data }: RobotProps) => {
           </div>
           <div>
             <ButtonBase type="button" onClick={() => handleRunning()}>
-              {loadingRunning ? (
-                <CircularProgress size={16} />
-              ) : running ? (
-                <MdPause size={24} />
-              ) : (
-                <MdPlayArrow size={24} />
-              )}
+              {running ? <MdPause size={24} /> : <MdPlayArrow size={24} />}
             </ButtonBase>
             <ButtonBase
               type="button"
@@ -150,4 +150,4 @@ const RobotDashboard: React.FC<RobotProps> = ({ data }: RobotProps) => {
   );
 };
 
-export default RobotDashboard;
+export default RobotInstanceInfo;

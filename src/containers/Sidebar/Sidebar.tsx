@@ -16,6 +16,9 @@ import { Container, Logo, Separator, Menu } from './styles';
 import { useTypedSelector } from '../../store/modules/rootReducer';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 
+/**
+ * Render a Sidebar.
+ */
 const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
   const sidebarState = useTypedSelector((state) => state.UI.sidebar);
