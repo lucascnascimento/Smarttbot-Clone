@@ -1,7 +1,7 @@
 import * as actions from './actions';
 import * as types from './types';
 
-describe('actions', () => {
+describe('UI actions', () => {
   it('should create a toggle mode action', () => {
     const expectedAction = {
       type: types.TOGGLE_MODE,
