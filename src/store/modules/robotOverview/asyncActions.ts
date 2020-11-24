@@ -8,13 +8,14 @@ import {
   fetchRobotOverviewRequest,
   fetchRobotOverviewSuccess,
 } from './actions';
-import {
-  RobotOverview,
-  ServerErrorResponse,
-  ServerResponse,
-} from '../../../types/types';
+import { formatErrorMessage } from '../utils';
+import { RobotOverview, ServerResponse } from '../../../types/types';
 
 // Thunk
+
+/**
+ * Fetches the robot overview from remote server
+ */
 export const fetchRobotOverview = (): ThunkAction<
   void,
   RootState,
@@ -30,21 +31,7 @@ export const fetchRobotOverview = (): ThunkAction<
 
       dispatch(fetchRobotOverviewSuccess(res.data.data));
     } catch (error) {
-      try {
-        const errorMsg: ServerErrorResponse = {
-          message: error.response.statusText,
-          status: error.response.status,
-        };
-
-        dispatch(fetchRobotOverviewFailure(errorMsg));
-      } catch (err) {
-        const errorMsg: ServerErrorResponse = {
-          message: 'Bad request',
-          status: 400,
-        };
-
-        dispatch(fetchRobotOverviewFailure(errorMsg));
-      }
+      dispatch(fetchRobotOverviewFailure(formatErrorMessage(error)));
     }
   };
 };
