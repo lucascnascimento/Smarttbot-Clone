@@ -69,7 +69,7 @@ export interface Strategy {
 
 export interface ServerErrorResponse {
   message: string;
-  status: number;
+  status?: number;
 }
 
 export interface ServerResponse<T> {
