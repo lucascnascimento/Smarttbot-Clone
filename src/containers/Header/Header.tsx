@@ -1,12 +1,9 @@
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react/require-default-props */
 import React, { ReactNode } from 'react';
-import { AiFillSignal } from 'react-icons/ai';
 import { MdMenu } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
-import { useTypedSelector } from '../../store/modules/rootReducer';
-import ToggleButton from '../../components/ToggleButton';
 import {
   HamburguerMenu,
   Container,
@@ -15,7 +12,7 @@ import {
   TitleIcon,
   Separator,
 } from './styles';
-import { toggleMode, openSidebar } from '../../store/modules/ui/actions';
+import { openSidebar } from '../../store/modules/ui/actions';
 import theme from '../../styles/themes/smarttBotDefault';
 
 interface HeaderProps {
@@ -33,22 +30,33 @@ interface HeaderProps {
  * @param rightSideComponent: A component to be displayed on the right side of the header
  * when the screen is bigger than 1024px
  */
-const Header: React.FC<HeaderProps> = ({ title, subtitle }: HeaderProps) => {
-  const buttonState = useTypedSelector((state) => state.UI.mode);
+const Header: React.FC<HeaderProps> = ({
+  title,
+  subtitle,
+  icon,
+  rightSideComponent,
+}: HeaderProps) => {
   const dispatch = useDispatch();
   const windowWidth = useWindowWidth();
 
   return (
     <header>
       <Container>
-        <HamburguerMenu onClick={() => dispatch(openSidebar())}>
+        <HamburguerMenu
+          onClick={() => dispatch(openSidebar())}
+          aria-label="menu"
+          aria-hidden={windowWidth > theme.width.desktop}
+        >
           <MdMenu size={32} />
         </HamburguerMenu>
         <TitleContainer>
-          <TitleIcon>
-            <AiFillSignal size={22} />
-          </TitleIcon>
-          <Separator />
+          {icon ? (
+            <>
+              <TitleIcon>{icon}</TitleIcon>
+              <Separator />
+            </>
+          ) : null}
+
           <Title>
             {title}
             <span> / </span>
@@ -58,12 +66,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle }: HeaderProps) => {
         {windowWidth < theme.width.desktop ? (
           <div />
         ) : (
-          <ToggleButton
-            leftText="Modo simulado"
-            rightText="Modo real"
-            state={buttonState}
-            action={() => dispatch(toggleMode())}
-          />
+          rightSideComponent || null
         )}
       </Container>
     </header>
