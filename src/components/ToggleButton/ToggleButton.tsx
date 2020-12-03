@@ -32,10 +32,13 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   return (
     <Container>
       <LeftText toggleState={state}>{leftText}</LeftText>
-      <Toggle onClick={() => action()} aria-label="Trocar modo">
+      <Toggle
+        onClick={() => action()}
+        aria-label="Modo de operação"
+        aria-roledescription="Toggle button"
+      >
         <ToggleTrack toggleState={state} />
         <ToggleThumb toggleState={state} />
-        <input type="checkbox" checked={state} readOnly />
       </Toggle>
       <RightText toggleState={state}>{rightText}</RightText>
     </Container>

@@ -16,13 +16,6 @@ export const Toggle = styled.div`
   border: 0;
   padding: 0;
   position: relative;
-
-  & input {
-    position: absolute;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-  }
 `;
 
 export const ToggleTrack = styled.div<ToggleStateProps>`
@@ -58,7 +51,7 @@ export const ToggleThumb = styled.div<ToggleStateProps>`
 
 export const LeftText = styled.span<ToggleStateProps>`
   font-weight: ${(props) => (!props.toggleState ? 'bold' : '500')};
-  color: black;
+  color: ${(props) => props.theme.colors.gray2};
   padding: 0 8px;
 `;
 
