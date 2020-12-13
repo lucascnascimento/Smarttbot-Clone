@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useTypedSelector } from '../../store/modules/rootReducer';
 import { fetchRobotOverview } from '../../store/modules/robotOverview/asyncActions';
 import { formatMoney } from '../../utils/utils';
 import theme from '../../styles/themes/smarttBotDefault';
 import Paper from './Paper';
 import Spinner from '../../components/Spinner';
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 
 import {
   Container,
@@ -17,7 +19,9 @@ import {
   Separator,
   Papers,
   PapersList,
+  ShowMore,
 } from './styles';
+import SlideUpAndDown from '../../Animations/SlideUpAndDown';
 
 /**
  * Display the robot overview
@@ -30,7 +34,10 @@ const RobotOverview: React.FC = () => {
   const loadingRobotsOverview = useTypedSelector(
     (state) => state.robotOverview.loadingRobotOverview
   );
+  const windowWidth = useWindowWidth();
+  const [showMore, setShowMore] = useState(false);
 
+  // Dispatch an action to fetch the robot overview info from the API
   useEffect(() => {
     dispatch(fetchRobotOverview());
   }, []);
@@ -52,15 +59,35 @@ const RobotOverview: React.FC = () => {
               <Value>{robotOverview.transactions}</Value>
             </TotalTransactions>
           </Summary>
-          <Separator />
-          <Papers>
-            <h5>Papéis negociados</h5>
-            <PapersList>
-              {robotOverview.papers.map((paper) => (
-                <Paper paper={paper.name} transactions={paper.trasactions} />
-              ))}
-            </PapersList>
-          </Papers>
+          {robotOverview.papers.length > 0 && (
+            <>
+              <Separator />
+
+              <SlideUpAndDown
+                show={
+                  (windowWidth < theme.width.tablet && showMore) ||
+                  windowWidth > theme.width.tablet
+                }
+              >
+                <Papers>
+                  <h5>Papéis negociados</h5>
+                  <PapersList>
+                    {robotOverview.papers.map((paper) => (
+                      <Paper
+                        paper={paper.name}
+                        transactions={paper.trasactions}
+                      />
+                    ))}
+                  </PapersList>
+                </Papers>
+              </SlideUpAndDown>
+
+              <ShowMore onClick={() => setShowMore(!showMore)} show={showMore}>
+                Mostrar {showMore ? 'menos' : 'mais'}{' '}
+                <MdKeyboardArrowDown size={22} />
+              </ShowMore>
+            </>
+          )}
         </>
       )}
     </Container>

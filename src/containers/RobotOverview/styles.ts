@@ -1,8 +1,17 @@
-import styled from 'styled-components';
+import { ButtonBase } from '@material-ui/core';
+import styled, { css, keyframes } from 'styled-components';
 import { BaseContainer } from '../../styles/styles';
 
 interface MovimentSummary {
   profit: boolean;
+}
+
+interface ShowMoreProps {
+  show: boolean;
+}
+
+interface PapersContainerProps {
+  active: boolean;
 }
 
 export const Container = styled(BaseContainer)`
@@ -87,5 +96,26 @@ export const PapersList = styled.ul`
     display: grid;
     column-gap: 72px;
     grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+export const ShowMore = styled(ButtonBase)<ShowMoreProps>`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 0px 9px !important;
+  font-size: 0.83rem;
+  color: ${(props) => props.theme.colors.gray2} !important;
+
+  @media ${(props) => props.theme.media.tablet} {
+    display: none !important;
+  }
+
+  & svg {
+    transform: ${(props) =>
+      props.show ? css`rotate(180deg)` : css`rotate(360deg)`};
+
+    transition: transform 0.3s linear;
   }
 `;
