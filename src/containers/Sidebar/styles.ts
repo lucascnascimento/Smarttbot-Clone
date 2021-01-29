@@ -18,7 +18,7 @@ export const Container = styled(BaseContainer)<SidebarContainerProps>`
   }
 
   position: fixed;
-  left: 0;
+  /* left: 0; */
   top: 0;
   width: 60%;
   height: 100vh;
